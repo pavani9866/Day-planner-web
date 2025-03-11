@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day planner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1> Day planner</h1>
+
+        <label for="theme">Select Theme:</label>
+        <select id="theme" onchange="changeTheme()">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+        </select>
+
+        <label for="task">Enter the Task:</label>
+        <input type="text" id="task" placeholder="Enter your task" onkeypress="handleKeyPress(event)">
+
+        <label for="date">Date:</label>
+        <input type="date" id="date">
+
+        <label for="priority">Priority:</label>
+        <select id="priority">
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select>
+
+        <div class="time-container">
+            <label>From:</label>
+            <select id="from-hour"></select>
+            <select id="from-minute"></select>
+            <select id="from-period">
+                <option>AM</option>
+                <option>PM</option>
+            </select>
+
+            <label>To:</label>
+            <select id="to-hour"></select>
+            <select id="to-minute"></select>
+            <select id="to-period">
+                <option>AM</option>
+                <option>PM</option>
+            </select>
+        </div>
+
+        <button onclick="addTask()">Add Task</button>
+        <button onclick="viewTasks()">View Tasks</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

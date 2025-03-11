@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Tasks</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Your Tasks</h1>
+        <ul id="task-list"></ul>
+        <button onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const taskList = document.getElementById("task-list");
+            const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+            tasks.forEach((task, index) => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <span>${task.task} (Date: ${task.date}, Priority: <strong>${task.priority}</strong>, Time: ${task.from} - ${task.to})</span>
+                    <button class="complete-btn" onclick="completeTask(${index})">✔</button>
+                    <button class="wrong-btn" onclick="removeTask(${index})">❌</button>
+                `;
+                taskList.appendChild(li);
+            });
+        });
+
+        function completeTask(index) {
+            let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            tasks.splice(index, 1);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            alert("Task Completed!");
+            location.reload();
+        }
+
+        function removeTask(index) {
+            let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            tasks.splice(index, 1);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            alert("Task Removed!");
+            location.reload();
+        }
+
+        function goBack() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
